@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
+import AlexandriaVerse from "./AlexandriaVerse";
 import { Loader } from "@react-three/drei";
 import "./index.css";
 import { Provider } from "react-redux";
@@ -12,7 +12,7 @@ root.render(
   <>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <AlexandriaVerse />
       </PersistGate>
     </Provider>
     <Loader />

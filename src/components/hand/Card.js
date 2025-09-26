@@ -11,10 +11,10 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import cancel from "../../assets/logo/cancel.png";
 import carrot from "../../assets/logo/carrot.png";
-import img from "../../assets/pin_bellringer_angel.png";
+import img from "../../assets/alexandria_icon.svg";
 import atkImg from "../../assets/logo/atk.png";
 import defImg from "../../assets/logo/def.png";
-
+import { alexandriaVerseCards } from "../../decks/alexandriaVerseCards";
 import "../../css/Card.css";
 
 export default function Card({
@@ -46,6 +46,7 @@ export default function Card({
   const [def, setDef] = useState(0);
   const [counter, setCounter] = useState(0);
   const [hoverInput, setHoverInput] = useState(false);
+  const cardData = alexandriaVerseCards[name];
 
   const reduxEnemyCardSelectedInHand = useSelector(
     (state) => state.card.enemyCardSelectedInHand
@@ -185,6 +186,23 @@ export default function Card({
             : ""
         }
       >
+        {cardData && (
+          <div
+            style={{
+              position: "absolute",
+              top: "5px",
+              left: "5px",
+              backgroundColor: "rgba(0, 31, 63, 0.85)",
+              color: "#E0E0E0",
+              padding: "2px 5px",
+              borderRadius: "5px",
+              fontSize: "12px",
+              fontFamily: "'Asul', sans-serif",
+            }}
+          >
+            {cardData.faction}
+          </div>
+        )}
         {counterVal > 0 && (
           <>
             <input
@@ -223,21 +241,7 @@ export default function Card({
             alt={name}
           />
         ) : (
-          <img
-            // style={
-            //   inHand &&
-            //   (reduxEnemyCardSelectedInHand - handLength + 1) * -1 ===
-            //     inHandIndex
-            //     ? {
-            //         filter:
-            //           "sepia() saturate(4) hue-rotate(315deg) brightness(100%) opacity(5)",
-            //       }
-            //     : {}
-            // }
-            height={"100%"}
-            src={cardImage(name)}
-            alt={name}
-          />
+          <img height={"100%"} src={cardImage(name)} alt={name} />
         )}
         {showAtk && (
           <>
