@@ -23,29 +23,8 @@ import { Menu, MenuItem, Modal, Box, Popover } from "@mui/material";
 import CardMUI from "@mui/material/Card";
 import Card from "../hand/Card";
 
-import defaultCardBack from "../../assets/cardbacks/default.png";
-import aeneaCardBack from "../../assets/cardbacks/aenea.png";
-import dionneCardBack from "../../assets/cardbacks/dionne.png";
-import dragonCardBack from "../../assets/cardbacks/dragon.png";
-import fileneCardBack from "../../assets/cardbacks/filene.png";
-import galmieuxCardBack from "../../assets/cardbacks/galmieux.png";
-import jeanneCardBack from "../../assets/cardbacks/jeanne.png";
-import kuonCardBack from "../../assets/cardbacks/kuon.png";
-import ladicaCardBack from "../../assets/cardbacks/ladica.png";
-import lishennaCardBack from "../../assets/cardbacks/lishenna.png";
-import lishenna2CardBack from "../../assets/cardbacks/lishenna2.png";
-import mistolinaCardBack from "../../assets/cardbacks/mistolina.png";
-import monoCardBack from "../../assets/cardbacks/mono.png";
-import orchisCardBack from "../../assets/cardbacks/orchis.png";
-import piercyeCardBack from "../../assets/cardbacks/piercye.png";
-import rosequeenCardBack from "../../assets/cardbacks/rosequeen.png";
-import shikiCardBack from "../../assets/cardbacks/shiki.png";
-import shutenCardBack from "../../assets/cardbacks/shuten.png";
-import tidalgunnerCardBack from "../../assets/cardbacks/tidalgunner.png";
-import viridiaCardBack from "../../assets/cardbacks/viridia.png";
-import wilbertCardBack from "../../assets/cardbacks/wilbert.png";
-
-const img = require("../../assets/pin_bellringer_angel.png");
+import defaultCardBack from "../../assets/cardbacks/alexandria_card_back.svg";
+import img from "../../assets/alexandria_icon.svg";
 
 const style = {
   position: "relative",
@@ -77,7 +56,7 @@ export default function Deck({
   const [textInput, setTextInput] = useState("");
   const [partialDeck, setPartialDeck] = useState([]);
 
-  const [cardback, setCardback] = useState();
+  const [cardback, setCardback] = useState(defaultCardBack);
   const reduxCardBack = useSelector((state) => state.card.cardback);
 
   const reduxDeck = useSelector((state) => state.card.deck);
@@ -297,70 +276,7 @@ export default function Deck({
   };
 
   useEffect(() => {
-    switch (reduxCardBack) {
-      case "Aenea":
-        setCardback(aeneaCardBack);
-        break;
-      case "Dionne":
-        setCardback(dionneCardBack);
-        break;
-      case "Dragon":
-        setCardback(dragonCardBack);
-        break;
-      case "Filene":
-        setCardback(fileneCardBack);
-        break;
-      case "Galmieux":
-        setCardback(galmieuxCardBack);
-        break;
-      case "Jeanne":
-        setCardback(jeanneCardBack);
-        break;
-      case "Kuon":
-        setCardback(kuonCardBack);
-        break;
-      case "Ladica":
-        setCardback(ladicaCardBack);
-        break;
-      case "Lishenna":
-        setCardback(lishennaCardBack);
-        break;
-      case "Lishenna2":
-        setCardback(lishenna2CardBack);
-        break;
-      case "Mistolina":
-        setCardback(mistolinaCardBack);
-        break;
-      case "Mono":
-        setCardback(monoCardBack);
-        break;
-      case "Orchis":
-        setCardback(orchisCardBack);
-        break;
-      case "Piercye":
-        setCardback(piercyeCardBack);
-        break;
-      case "RoseQueen":
-        setCardback(rosequeenCardBack);
-        break;
-      case "Shikigami":
-        setCardback(shikiCardBack);
-        break;
-      case "Shuten":
-        setCardback(shutenCardBack);
-        break;
-      case "TidalGunner":
-        setCardback(tidalgunnerCardBack);
-        break;
-      case "Viridia":
-        setCardback(viridiaCardBack);
-        break;
-      case "Wilbert":
-        setCardback(wilbertCardBack);
-        break;
-      default:
-        setCardback(defaultCardBack);
-    }
+    setCardback(defaultCardBack);
   }, [reduxCardBack]);
 
   return (
