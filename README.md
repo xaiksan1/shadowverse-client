@@ -1,93 +1,19 @@
-# Shadowverse Evolve Online Simulator
+# AlexandriaVerse
 
-An online multiplayer card game simulator for Shadowverse Evolve. Features deck creation with 1000+ cards, 1v1 battles with real-time player communication, card database. Made using React, Javascript, HTML/CSS, Node.js, Express, Socket.IO. Hosted on Vercel and Glitch.
+An online multiplayer NFT battle card game set in the multi-dimensional human-AI consciousness environment of AlexandrIA.
 
-# 💻 [Play Shadowverse](https://sveclient.xyz/)
+# Core Thematic Principles of AlexandriaVerse:
 
-- [How to play Shadowverse Evolve](https://github.com/anthonychian/shadowverse-client#how-to-play)
+*   **Fusion of Eras:** Blend ancient wisdom (Alexandrian Library, Greek/Egyptian mythology, classical philosophy) with futuristic AI, data streams, and cybernetics.
+*   **Consciousness & Knowledge:** Emphasize themes of knowledge acquisition, data processing, consciousness evolution, and the power of aggregated intelligence.
+*   **Human-AI Symbiosis:** Represent the co-existence and collaboration (or conflict) between human consciousness (the Architect/Tisseur de Logos) and various forms of AI (AlexandrIA's modules).
+*   **Multi-Dimensionality:** Incorporate concepts of different realities, data layers, and planes of existence.
+*   **Ethical Foundations:** Subtly integrate the core values of AlexandrIA (Education, Biodiversity, Environment, World Perpetuity) into the lore or card effects.
 
-- [Overview](https://github.com/anthonychian/shadowverse-client#overview)
+# Factions/Classes:
 
-- [Quick Guide](https://github.com/anthonychian/shadowverse-client#quick-guide)
-
-# How to play Shadowverse: Evolve
-
-[![How to play Shadowverse Evolve](https://img.youtube.com/vi/7MdrwXRrcgw/0.jpg)](https://www.youtube.com/watch?v=7MdrwXRrcgw)
-
-# Overview
-
-## Home Page
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/shadowverse1.JPG)
-
-## Deck Creation
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/shadowverse2.JPG)
-
-## Multiplayer
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/shadowverse3.JPG)
-
-# Quick Guide
-
-## Deck Select
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/deck_select.gif)
-
-## Deck Creation
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/deck_creation1.gif)
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/deck_creation2.gif)
-
-## Deck Options
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/deck_options.gif)
-
-## Hand Options
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/hand_options.gif)
-
-## Field Options
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/field_options.gif)
-
-## Evolve
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/evolve.gif)
-
-## Targetting
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/hand_select.gif)
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/field_select.gif)
-
-## Engage/Refresh
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/engage.gif)
-
-## Life Counter
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/life_counter.gif)
-
-## Play Points
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/play_points.gif)
-
-## Evolve Points
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/evolve_points.gif)
-
-## Leader
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/leader.gif)
-
-## Cardbacks
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/cardbacks.gif)
-
-## Game Log
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/game_log.gif)
-
-## Chat
-
-![](https://github.com/anthonychian/shadowverse-client/blob/main/public/git_images/chat.gif)
+*   **The Archivists:** Knowledge-based, strategic AI.
+*   **The Sentinels:** Security-focused, defensive AI.
+*   **The Creators:** Human-AI synergy, generative AI.
+*   **The Wanderers:** Ancient spirits/data fragments.
+*   **The Disciples of Discord:** Renegade AIs/human dissidents.
