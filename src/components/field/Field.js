@@ -91,12 +91,11 @@ import EnemyCemetery from "./EnemyCemetery";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EvoDeck from "./EvoDeck";
 import EnemyEvoDeck from "./EnemyEvoDeck";
-import img from "../../assets/pin_bellringer_angel.png";
+import img from "../../assets/logo/abyss.png";
 import "../../css/AnimatedBorder.css";
 import { useNavigate } from "react-router-dom";
 import { socket } from "../../sockets";
 import Token from "./Token";
-import Lesson from "./Lesson";
 // import { PerfectArrow } from "./PerfectArrow";
 import ShowDice from "./ShowDice";
 
@@ -144,7 +143,6 @@ export default function Field({
   const navigate = useNavigate();
 
   // redux state
-  const reduxRoom = useSelector((state) => state.card.room);
   const reduxField = useSelector((state) => state.card.field);
   const reduxCurrentCard = useSelector((state) => state.card.currentCard);
   const reduxCurrentCardIndex = useSelector(
@@ -205,7 +203,7 @@ export default function Field({
   const [tokenReady, setTokenReady] = useState(false);
 
   useEffect(() => {
-    socket.on("receive msg", (data) => {
+    const handleReceiveMessage = (data) => {
       if (data.type === "field") dispatch(setEnemyField(data.data));
       else if (data.type === "evoField") dispatch(setEnemyEvoField(data.data));
       else if (data.type === "engaged") dispatch(setEnemyEngaged(data.data));
@@ -260,25 +258,26 @@ export default function Field({
         dispatch(setEnemyChat(data.data));
         dispatch(setLastChatMessage(data.data));
       }
-    });
-    return () => {
-      socket.off("receive msg");
     };
-  }, [socket]);
+    socket.on("receive msg", handleReceiveMessage);
+    return () => {
+      socket.off("receive msg", handleReceiveMessage);
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     if (reduxCurrentRoom.length === 0) {
       navigate("/");
     }
-  }, [reduxCurrentRoom]);
+  }, [navigate, reduxCurrentRoom]);
 
   useEffect(() => {
     dispatch(setCardSelectedInHand(-1));
-  }, [reduxEnemyHand]);
+  }, [dispatch, reduxEnemyHand]);
 
   useEffect(() => {
     dispatch(setCardSelectedOnField(-1));
-  }, [reduxEnemyField]);
+  }, [dispatch, reduxEnemyField]);
 
   const handleModalClose = () => {
     dispatch(setShowEnemyHand(false));

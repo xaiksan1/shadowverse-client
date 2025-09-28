@@ -50,7 +50,6 @@ export default function Deck({
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [index, setIndex] = useState(0);
-  const [contextMenu, setContextMenu] = React.useState(null);
   const [cardContextMenu, setCardContextMenu] = React.useState(null);
   const [reveal, setReveal] = useState(false);
   const [textInput, setTextInput] = useState("");
@@ -104,17 +103,6 @@ export default function Deck({
     setTextInput(text);
   };
 
-  const handleContextMenu = (event) => {
-    event.preventDefault();
-    setContextMenu(
-      contextMenu === null
-        ? {
-            mouseX: event.clientX + 2,
-            mouseY: event.clientY - 6,
-          }
-        : null
-    );
-  };
   const handleCardContextMenu = (event, name, index) => {
     setName(name);
     setIndex(index);

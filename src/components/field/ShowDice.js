@@ -3,7 +3,7 @@ import dice from "../../assets/logo/dice.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowDice } from "../../redux/CardSlice";
 
-import img from "../../assets/pin_bellringer_angel.png";
+import img from "../../assets/logo/abyss.png";
 
 export default function ShowDice() {
   const dispatch = useDispatch();

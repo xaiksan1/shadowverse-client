@@ -86,7 +86,7 @@ export default function Selection({ setSelectedOption }) {
   const reduxEnemyRematchStatus = useSelector(
     (state) => state.card.enemyRematchStatus
   );
-  const img = require("../../assets/pin_bellringer_angel.png");
+  const img = require("../../assets/logo/abyss.png");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -107,8 +107,6 @@ export default function Selection({ setSelectedOption }) {
 
   const [rematchOpenDialog, setRematchOpenDialog] = useState(false);
 
-  const [rematchNotify, setRematchNotify] = useState(false);
-
   const [acceptRematch, setAcceptRematch] = useState(false);
 
   const theme = useTheme();
@@ -122,14 +120,6 @@ export default function Selection({ setSelectedOption }) {
   const selectCardBack = (e) => {
     const cardback = e.target.alt;
     dispatch(setCardBack(cardback));
-  };
-
-  const handleRematch = () => {
-    if (acceptRematch && reduxEnemyRematchStatus) {
-      dispatch(reset());
-      setAcceptRematch(false);
-      setRematchNotify(true);
-    }
   };
 
   const exitToHome = () => {
@@ -179,12 +169,11 @@ export default function Selection({ setSelectedOption }) {
   }, [reduxEnemyRematchStatus]);
 
   useEffect(() => {
-    handleRematch();
-  }, [acceptRematch]);
-
-  useEffect(() => {
-    handleRematch();
-  }, [reduxEnemyRematchStatus]);
+    if (acceptRematch && reduxEnemyRematchStatus) {
+      dispatch(reset());
+      setAcceptRematch(false);
+    }
+  }, [acceptRematch, dispatch, reduxEnemyRematchStatus]);
 
   return (
     <>

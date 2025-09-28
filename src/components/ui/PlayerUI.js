@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { IconButton, Badge } from "@mui/material/";
+import { IconButton } from "@mui/material/";
 import { useDispatch, useSelector } from "react-redux";
 import { setHealth, setEvoPoints, setDice } from "../../redux/CardSlice";
 import Leader from "./Leader";
@@ -48,7 +48,7 @@ export default function PlayerUI({ name }) {
 
   useEffect(() => {
     dispatch(setHealth(playerHealth));
-  }, [playerHealth]);
+  }, [dispatch, playerHealth]);
 
   useEffect(() => {
     setPlayerHealth(reduxCurrentHealth);

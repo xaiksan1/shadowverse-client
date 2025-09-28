@@ -13,7 +13,7 @@ import ZoomedCard from "../components/ui/ZoomedCard";
 import initialWallpaper from "../../src/assets/wallpapers/3.png";
 
 export default function Game() {
-  const [wallpaper, setWallpaper] = useState(initialWallpaper);
+  const [wallpaper] = useState(initialWallpaper);
   const [selectedOption, setSelectedOption] = useState("Galmieux");
   const constraintsRef = useRef(null);
   const [ready, setReady] = useState(false);
@@ -35,10 +35,7 @@ export default function Game() {
         backgroundSize: "cover",
       }}
     >
-      <Selection
-        setSelectedOption={setSelectedOption}
-        // setWallpaper={setWallpaper}
-      />
+      <Selection setSelectedOption={setSelectedOption} />
       {/* Left side  */}
       <div className={"leftSideCanvas"}>
         <ZoomedCard name={reduxCurrentCard} hovering={hovering} />

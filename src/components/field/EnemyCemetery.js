@@ -13,7 +13,7 @@ import CardMUI from "@mui/material/Card";
 import Card from "../hand/Card";
 import { setViewingCemeteryOpponent } from "../../redux/CardSlice";
 
-const img = require("../../assets/pin_bellringer_angel.png");
+const img = require("../../assets/logo/abyss.png");
 
 const style = {
   position: "relative",

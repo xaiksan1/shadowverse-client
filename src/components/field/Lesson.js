@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import imas from "../../assets/logo/imas.png";
 import { useDispatch } from "react-redux";
 import { createLessonTokens } from "../../redux/CardSlice";
-import img from "../../assets/pin_bellringer_angel.png";
+import img from "../../assets/logo/abyss.png";
 
 export default function Lesson() {
   const dispatch = useDispatch();

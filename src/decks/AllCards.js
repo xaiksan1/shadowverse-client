@@ -66,3 +66,23 @@ export const theDisciplesOfDiscord = [
 ];
 
 export const neutral = ["AlexandrIA: The Nexus Core"];
+
+// Legacy aliases preserved for deck builder grouping logic
+export const set9 = allCards;
+export const set8 = allCards;
+export const set7 = allCards;
+export const setIDOL = allCards;
+export const set6 = allCards;
+export const set5 = allCards;
+export const set4 = allCards;
+export const set3 = allCards;
+export const setUMA = allCards;
+export const set2 = allCards;
+export const set1 = allCards;
+
+export const forest = theArchivists;
+export const sword = theSentinels;
+export const rune = theCreators;
+export const dragon = theWanderers;
+export const abyss = theDisciplesOfDiscord;
+export const haven = theSentinels;

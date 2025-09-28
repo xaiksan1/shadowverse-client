@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import wallpaper from "../../src/assets/wallpapers/3.png";
@@ -31,6 +31,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Menu, MenuItem, Modal, Box } from "@mui/material";
 import CardMUI from "@mui/material/Card";
 import "../css/Home.css";
+import WalletPanel from "../components/ui/WalletPanel";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -54,15 +55,27 @@ export default function Home() {
   const reduxActiveUsers = useSelector((state) => state.card.activeUsers);
   const numLeaders = 7;
 
-  useEffect(() => {
-    socket.on("start_game", () => {
-      handleNavigateToGame();
-    });
+  const handleNavigateToGame = useCallback(() => {
+    navigate("/game");
+  }, [navigate]);
 
-    socket.on("active_users", (data) => {
+  useEffect(() => {
+    const handleStartGame = () => {
+      handleNavigateToGame();
+    };
+
+    const handleActiveUsers = (data) => {
       dispatch(setActiveUsers(data));
-    });
-  }, [socket]);
+    };
+
+    socket.on("start_game", handleStartGame);
+    socket.on("active_users", handleActiveUsers);
+
+    return () => {
+      socket.off("start_game", handleStartGame);
+      socket.off("active_users", handleActiveUsers);
+    };
+  }, [dispatch, handleNavigateToGame]);
 
   useEffect(() => {
     setLeaderImage(randomLeader());
@@ -141,10 +154,6 @@ export default function Home() {
     navigate("/deck", {
       state: { deckName: name },
     });
-  };
-
-  const handleNavigateToGame = () => {
-    navigate("/game");
   };
 
   const handleCardSelection = (card) => {
@@ -534,15 +543,23 @@ export default function Home() {
           Joining Room: 1/2 players...
         </div>
       )}
+      <div
+        style={{
+          width: "80%",
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "2rem",
+        }}
+      >
+        <WalletPanel />
+      </div>
       {reduxActiveUsers !== 0 && (
         <div
           style={{
             position: "absolute",
             top: "5%",
             right: "4%",
-            // color: "white",
             fontSize: 30,
-            // fontFamily: "Noto Serif JP, serif",
             fontFamily: "Share Tech Mono, monospace",
             color: " #daf6ff",
             textShadow:

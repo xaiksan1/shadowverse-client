@@ -10,7 +10,7 @@ import {
   setViewingEvoDeck,
   setCurrentCardIndex,
 } from "../../redux/CardSlice";
-import img from "../../assets/pin_bellringer_angel.png";
+import img from "../../assets/logo/abyss.png";
 
 import defaultCardBack from "../../assets/cardbacks/default.png";
 import aeneaCardBack from "../../assets/cardbacks/aenea.png";

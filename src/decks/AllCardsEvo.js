@@ -66,3 +66,23 @@ export const theDisciplesOfDiscordEvo = [
 ];
 
 export const neutralEvo = ["AlexandrIA: Evolved The Nexus Core"];
+
+// Legacy aliases preserved for deck builder grouping logic
+export const set9Evo = allCardsEvo;
+export const set8Evo = allCardsEvo;
+export const set7Evo = allCardsEvo;
+export const setIDOLEvo = allCardsEvo;
+export const set6Evo = allCardsEvo;
+export const set5Evo = allCardsEvo;
+export const set4Evo = allCardsEvo;
+export const set3Evo = allCardsEvo;
+export const setUMAEvo = allCardsEvo;
+export const set2Evo = allCardsEvo;
+export const set1Evo = allCardsEvo;
+
+export const forestEvo = theArchivistsEvo;
+export const swordEvo = theSentinelsEvo;
+export const runeEvo = theCreatorsEvo;
+export const dragonEvo = theWanderersEvo;
+export const abyssEvo = theDisciplesOfDiscordEvo;
+export const havenEvo = theSentinelsEvo;

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Badge, Snackbar, SnackbarContent } from "@mui/material/";
+import { Snackbar, SnackbarContent } from "@mui/material/";
 import { motion } from "framer-motion";
 import Dice from "react-dice-roll";
 import { useDispatch, useSelector } from "react-redux";
@@ -77,7 +77,7 @@ export default function EnemyUI() {
       // Cleanup function to clear the timeout if the component unmounts
       return () => clearTimeout(timeoutId);
     }
-  }, [reduxEnemyDice]);
+  }, [dispatch, reduxEnemyDice]);
 
   const getColorFromLeader = (name) => {
     switch (name) {

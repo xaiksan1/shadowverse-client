@@ -26,7 +26,7 @@ import {
 } from "../../redux/CardSlice";
 // import cardback from "../../assets/cardbacks/default.png";
 
-const img = require("../../assets/pin_bellringer_angel.png");
+const img = require("../../assets/logo/abyss.png");
 
 export default function Cemetery({
   setHovering,

@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { CardSlice } from "./CardSlice";
 import { DeckSlice } from "./DeckSlice";
+import blockchainReducer from "./blockchainSlice";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -18,11 +19,12 @@ import {
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  blacklist: ["card"],
+  blacklist: ["card", "blockchain"],
 };
 const rootReducer = combineReducers({
   card: CardSlice.reducer,
   deck: DeckSlice.reducer,
+  blockchain: blockchainReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

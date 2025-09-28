@@ -27,7 +27,7 @@ import tidalgunnerCardBack from "../../assets/cardbacks/tidalgunner.png";
 import viridiaCardBack from "../../assets/cardbacks/viridia.png";
 import wilbertCardBack from "../../assets/cardbacks/wilbert.png";
 
-const img = require("../../assets/pin_bellringer_angel.png");
+const img = require("../../assets/logo/abyss.png");
 
 const style = {
   position: "relative",

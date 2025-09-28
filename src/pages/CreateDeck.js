@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import wallpaper3 from "../../src/assets/wallpapers/3.png";
@@ -50,7 +50,7 @@ import {
 } from "../decks/AllCardsEvo";
 import { cardImage } from "../decks/getCards";
 import CardMUI from "@mui/material/Card";
-import img from "../assets/pin_bellringer_angel.png";
+import img from "../assets/logo/abyss.png";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { createDeck, deleteDeck } from "../redux/DeckSlice";
@@ -71,6 +71,49 @@ import {
   Modal,
   Box,
 } from "@mui/material";
+
+const CARD_COLLECTIONS = {
+  "set 9": set9,
+  "set 8": set8,
+  "set 7": set7,
+  idol: setIDOL,
+  "set 6": set6,
+  "set 5": set5,
+  "set 4": set4,
+  "set 3": set3,
+  uma: setUMA,
+  "set 2": set2,
+  "set 1": set1,
+  forest,
+  sword,
+  rune,
+  dragon,
+  abyss,
+  haven,
+  neutral,
+  "set 9 evo": set9Evo,
+  "set 8 evo": set8Evo,
+  "set 7 evo": set7Evo,
+  "idol evo": setIDOLEvo,
+  "set 6 evo": set6Evo,
+  "set 5 evo": set5Evo,
+  "set 4 evo": set4Evo,
+  "set 3 evo": set3Evo,
+  "uma evo": setUMAEvo,
+  "set 2 evo": set2Evo,
+  "set 1 evo": set1Evo,
+  "forest evo": forestEvo,
+  "sword evo": swordEvo,
+  "rune evo": runeEvo,
+  "dragon evo": dragonEvo,
+  "abyss evo": abyssEvo,
+  "haven evo": havenEvo,
+  "neutral evo": neutralEvo,
+  all: allCards,
+  "all evo": allCardsEvo,
+};
+
+const getCardsFromName = (name) => CARD_COLLECTIONS[name] ?? allCards;
 
 export default function CreateDeck() {
   const location = useLocation();
@@ -95,45 +138,35 @@ export default function CreateDeck() {
   const [openImport, setOpenImport] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [textInput, setTextInput] = useState("");
-  const [filteredAllCards, setFilteredAllCards] = useState(allCards);
-  const [filteredAllCardsEvo, setFilteredAllCardsEvo] = useState(allCardsEvo);
   const [buttonFilterSet, setButtonFilterSet] = useState("all");
   const [buttonFilterClass, setButtonFilterClass] = useState("all");
   const [buttonFilterSetEvo, setButtonFilterSetEvo] = useState("all evo");
   const [buttonFilterClassEvo, setButtonFilterClassEvo] = useState("all evo");
+  const initialDeckLoad = React.useRef(false);
 
-  useEffect(() => {
-    const filtered = handleSelectButtonFilter();
-    const filteredEvo = handleSelectButtonFilterEvo();
-    setFilteredAllCards(filtered);
-    setFilteredAllCardsEvo(filteredEvo);
-    handleTextInput(textInput);
-  }, [buttonFilterSet, buttonFilterClass, mainDeckSelected]);
-
-  useEffect(() => {
-    if (deckEdit.length > 0) {
-      if (deckEdit[0].deck.length > 0) {
-        handleFillDeckMap(deckEdit[0].deck);
-      }
-      if (deckEdit[0].evoDeck.length > 0) {
-        handleFillEvoDeckMap(deckEdit[0].evoDeck);
-      }
+  const filteredAllCards = useMemo(() => {
+    const setCards = getCardsFromName(buttonFilterSet);
+    const classCards = getCardsFromName(buttonFilterClass);
+    const merged = setCards.filter((setCard) => classCards.indexOf(setCard) > -1);
+    if (mainDeckSelected && textInput) {
+      return merged.filter((card) =>
+        card.toLowerCase().includes(textInput.toLowerCase())
+      );
     }
-    if (id) {
-      try {
-        let decodedObject = JSON.parse(atob(id));
+    return merged;
+  }, [buttonFilterClass, buttonFilterSet, mainDeckSelected, textInput]);
 
-        if (decodedObject[0].deck.length > 0) {
-          handleFillDeckMap(decodedObject[0].deck);
-        }
-        if (decodedObject[0].evoDeck.length > 0) {
-          handleFillEvoDeckMap(decodedObject[0].evoDeck);
-        }
-      } catch {
-        navigate("/deck");
-      }
+  const filteredAllCardsEvo = useMemo(() => {
+    const setCards = getCardsFromName(buttonFilterSetEvo);
+    const classCards = getCardsFromName(buttonFilterClassEvo);
+    const merged = setCards.filter((setCard) => classCards.indexOf(setCard) > -1);
+    if (evoDeckSelected && textInput) {
+      return merged.filter((card) =>
+        card.toLowerCase().includes(textInput.toLowerCase())
+      );
     }
-  }, []);
+    return merged;
+  }, [buttonFilterClassEvo, buttonFilterSetEvo, evoDeckSelected, textInput]);
 
   const isDoubleEvo = (cardName) => {
     return (
@@ -189,17 +222,6 @@ export default function CreateDeck() {
       setCardName("Cerynelan Darkhind");
     } else if (cardName === "Cerynelan Darkhind") {
       setCardName("Cerynelan Lighthind");
-    }
-  };
-
-  const handleFillDeckMap = (deck) => {
-    for (let i = 0; i < deck.length; i++) {
-      handleCardSelection(deck[i]);
-    }
-  };
-  const handleFillEvoDeckMap = (deck) => {
-    for (let i = 0; i < deck.length; i++) {
-      handleEvoCardSelection(deck[i]);
     }
   };
 
@@ -264,7 +286,7 @@ export default function CreateDeck() {
 
   const handleSubmit = () => {
     const encodedObject = JSON.stringify(deckEdit);
-    const encoded = btoa(encodedObject);
+    btoa(encodedObject);
     // const url = handleDeckImportFormat();
     dispatch(deleteDeck(deckName));
 
@@ -288,137 +310,27 @@ export default function CreateDeck() {
 
   const handleTextInput = (text) => {
     setTextInput(text);
-    if (mainDeckSelected) {
-      const filtered = handleSelectButtonFilter();
-      const filteredCards = filtered.filter((card) =>
-        card.toLowerCase().includes(text.toLowerCase())
-      );
-      setFilteredAllCards(filteredCards);
-    } else {
-      const filteredEvo = handleSelectButtonFilterEvo();
-      const filteredCards = filteredEvo.filter((card) =>
-        card.toLowerCase().includes(text.toLowerCase())
-      );
-      setFilteredAllCardsEvo(filteredCards);
-    }
   };
 
-  const getCardsFromName = (name) => {
-    switch (name) {
-      case "set 9":
-        return set9;
-      case "set 8":
-        return set8;
-      case "set 7":
-        return set7;
-      case "idol":
-        return setIDOL;
-      case "set 6":
-        return set6;
-      case "set 5":
-        return set5;
-      case "set 4":
-        return set4;
-      case "set 3":
-        return set3;
-      case "uma":
-        return setUMA;
-      case "set 2":
-        return set2;
-      case "set 1":
-        return set1;
-      case "set 9 evo":
-        return set9Evo;
-      case "set 8 evo":
-        return set8Evo;
-      case "set 7 evo":
-        return set7Evo;
-      case "idol evo":
-        return setIDOLEvo;
-      case "set 6 evo":
-        return set6Evo;
-      case "set 5 evo":
-        return set5Evo;
-      case "set 4 evo":
-        return set4Evo;
-      case "set 3 evo":
-        return set3Evo;
-      case "uma evo":
-        return setUMAEvo;
-      case "set 2 evo":
-        return set2Evo;
-      case "set 1 evo":
-        return set1Evo;
-      case "forest":
-        return forest;
-      case "forest evo":
-        return forestEvo;
-      case "sword":
-        return sword;
-      case "sword evo":
-        return swordEvo;
-      case "rune":
-        return rune;
-      case "rune evo":
-        return runeEvo;
-      case "dragon":
-        return dragon;
-      case "dragon evo":
-        return dragonEvo;
-      case "abyss":
-        return abyss;
-      case "abyss evo":
-        return abyssEvo;
-      case "haven":
-        return haven;
-      case "haven evo":
-        return havenEvo;
-      case "neutral":
-        return neutral;
-      case "neutral evo":
-        return neutralEvo;
-      case "all":
-        return allCards;
-      case "all evo":
-        return allCardsEvo;
-      default:
-        return allCards;
-    }
-  };
-
-  const handleSelectButtonFilter = () => {
-    const setCards = getCardsFromName(buttonFilterSet);
-    const classCards = getCardsFromName(buttonFilterClass);
-    const merged = setCards.filter(
-      (setCard) => classCards.indexOf(setCard) > -1
-    );
-    return merged;
-  };
-  const handleSelectButtonFilterEvo = () => {
-    const setCards = getCardsFromName(buttonFilterSetEvo);
-    const classCards = getCardsFromName(buttonFilterClassEvo);
-    const merged = setCards.filter(
-      (setCard) => classCards.indexOf(setCard) > -1
-    );
-    return merged;
-  };
-
-  const handleCardSelection = (card) => {
-    if (deck.length < 50) {
-      if (deckMap.has(card)) {
-        if (deckMap.get(card) === 1 && card === "Shenlong") return;
-        if (deckMap.get(card) === 1 && card === "Curse Crafter") return;
-        if (deckMap.get(card) === 3 && card !== "Onion Patch") {
-          return;
+  const handleCardSelection = useCallback(
+    (card) => {
+      if (deck.length < 50) {
+        if (deckMap.has(card)) {
+          if (deckMap.get(card) === 1 && card === "Shenlong") return;
+          if (deckMap.get(card) === 1 && card === "Curse Crafter") return;
+          if (deckMap.get(card) === 3 && card !== "Onion Patch") {
+            return;
+          } else {
+            deckMap.set(card, deckMap.get(card) + 1);
+          }
         } else {
-          deckMap.set(card, deckMap.get(card) + 1);
+          deckMap.set(card, 1);
         }
-      } else {
-        deckMap.set(card, 1);
+        setDeck((currentDeck) => [...currentDeck, card]);
       }
-      setDeck((deck) => [...deck, card]);
-    }
-  };
+    },
+    [deck, deckMap]
+  );
   const handleCardRemove = (card) => {
     if (deck.length > 0) {
       if (deckMap.has(card)) {
@@ -447,20 +359,70 @@ export default function CreateDeck() {
       }
     }
   };
-  const handleEvoCardSelection = (card) => {
-    if (evoDeck.length < 10) {
-      if (evoDeckMap.has(card)) {
-        if (evoDeckMap.get(card) === 3 && card !== "Carrot") {
-          return;
+  const handleEvoCardSelection = useCallback(
+    (card) => {
+      if (evoDeck.length < 10) {
+        if (evoDeckMap.has(card)) {
+          if (evoDeckMap.get(card) === 3 && card !== "Carrot") {
+            return;
+          } else {
+            evoDeckMap.set(card, evoDeckMap.get(card) + 1);
+          }
         } else {
-          evoDeckMap.set(card, evoDeckMap.get(card) + 1);
+          evoDeckMap.set(card, 1);
         }
-      } else {
-        evoDeckMap.set(card, 1);
+        setEvoDeck((currentDeck) => [...currentDeck, card]);
       }
-      setEvoDeck((deck) => [...deck, card]);
+    },
+    [evoDeck, evoDeckMap]
+  );
+
+  const handleFillDeckMap = useCallback(
+    (deckList) => {
+      deckList.forEach((card) => {
+        handleCardSelection(card);
+      });
+    },
+    [handleCardSelection]
+  );
+
+  const handleFillEvoDeckMap = useCallback(
+    (deckList) => {
+      deckList.forEach((card) => {
+        handleEvoCardSelection(card);
+      });
+    },
+    [handleEvoCardSelection]
+  );
+
+  useEffect(() => {
+    if (initialDeckLoad.current) {
+      return;
     }
-  };
+    if (deckEdit.length > 0) {
+      if (deckEdit[0].deck.length > 0) {
+        handleFillDeckMap(deckEdit[0].deck);
+      }
+      if (deckEdit[0].evoDeck.length > 0) {
+        handleFillEvoDeckMap(deckEdit[0].evoDeck);
+      }
+    }
+    if (id) {
+      try {
+        const decodedObject = JSON.parse(atob(id));
+
+        if (decodedObject[0].deck.length > 0) {
+          handleFillDeckMap(decodedObject[0].deck);
+        }
+        if (decodedObject[0].evoDeck.length > 0) {
+          handleFillEvoDeckMap(decodedObject[0].evoDeck);
+        }
+      } catch {
+        navigate("/deck");
+      }
+    }
+    initialDeckLoad.current = true;
+  }, [deckEdit, handleFillDeckMap, handleFillEvoDeckMap, id, navigate]);
 
   const handleMainDeckSelected = () => {
     setMainDeckSelected(true);

@@ -6,7 +6,7 @@ import { Menu, MenuItem, Modal, Box, Skeleton } from "@mui/material";
 import { setCurrentCard } from "../../redux/CardSlice";
 import CardMUI from "@mui/material/Card";
 import Card from "../hand/Card";
-import img from "../../assets/pin_bellringer_angel.png";
+import img from "../../assets/logo/abyss.png";
 
 const style = {
   position: "relative",
