@@ -1,0 +1,10 @@
+[install]
+# Automatically install peer dependencies
+auto = "yes"
+
+# Use hard links to save disk space
+frozenLockfile = false
+
+[install.scopes]
+# Trust npm registry
+"@*" = { registry = "https://registry.npmjs.org/" }

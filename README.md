@@ -2,6 +2,25 @@
 
 An online multiplayer NFT battle card game set in the multi-dimensional human-AI consciousness environment of AlexandrIA.
 
+## 🚀 Quick Start
+
+This project uses [Bun](https://bun.sh/) as the package manager and runtime for optimal performance.
+
+### Prerequisites
+- [Bun](https://bun.sh/) v1.0+
+
+### Installation
+```bash
+bun install
+```
+
+### Development
+```bash
+bun run start    # Start development server
+bun run build    # Build for production  
+bun run test     # Run tests
+```
+
 # Core Thematic Principles of AlexandriaVerse:
 
 *   **Fusion of Eras:** Blend ancient wisdom (Alexandrian Library, Greek/Egyptian mythology, classical philosophy) with futuristic AI, data streams, and cybernetics.
