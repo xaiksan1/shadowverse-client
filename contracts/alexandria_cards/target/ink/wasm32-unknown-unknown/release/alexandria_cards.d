@@ -1,0 +1,1 @@
+/home/ichigo/workspace_code/anima-mundi/shadowverse-client/contracts/alexandria_cards/target/ink/wasm32-unknown-unknown/release/alexandria_cards.wasm: /home/ichigo/workspace_code/anima-mundi/shadowverse-client/contracts/alexandria_cards/lib.rs

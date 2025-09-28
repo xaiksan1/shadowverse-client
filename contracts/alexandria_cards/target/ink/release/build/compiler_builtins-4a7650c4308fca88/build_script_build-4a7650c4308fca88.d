@@ -1,0 +1,6 @@
+/home/ichigo/workspace_code/anima-mundi/shadowverse-client/contracts/alexandria_cards/target/ink/release/build/compiler_builtins-4a7650c4308fca88/build_script_build-4a7650c4308fca88.d: /home/ichigo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins/build.rs /home/ichigo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins/configure.rs
+
+/home/ichigo/workspace_code/anima-mundi/shadowverse-client/contracts/alexandria_cards/target/ink/release/build/compiler_builtins-4a7650c4308fca88/build_script_build-4a7650c4308fca88: /home/ichigo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins/build.rs /home/ichigo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins/configure.rs
+
+/home/ichigo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins/build.rs:
+/home/ichigo/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/compiler-builtins/compiler-builtins/configure.rs:

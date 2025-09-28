@@ -1,0 +1,2922 @@
+{
+  "source": {
+    "hash": "0xd4271e4966f97de0c2c7ba20b2b679fca7084b9992de619ebddd5028c5a82c07",
+    "language": "ink! 5.1.1",
+    "compiler": "rustc 1.90.0",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "5.0.3",
+      "rust_toolchain": "stable-x86_64-unknown-linux-gnu",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "alexandria_cards",
+    "version": "0.1.0",
+    "authors": [
+      "[your_name] <[your_email]>"
+    ]
+  },
+  "image": null,
+  "spec": {
+    "constructors": [
+      {
+        "args": [
+          {
+            "label": "pack_price",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 27
+            }
+          },
+          {
+            "label": "evolution_fee",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 27
+            }
+          },
+          {
+            "label": "marketplace_fee",
+            "type": {
+              "displayName": [
+                "u16"
+              ],
+              "type": 42
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          "Constructor - initializes the NFT contract"
+        ],
+        "label": "new",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 44
+        },
+        "selector": "0x9bae9d5e"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          "Default constructor"
+        ],
+        "label": "default",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 44
+        },
+        "selector": "0xed4b9d1b"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 0
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 27
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 3
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 62
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 61
+      },
+      "maxEventTopics": 4,
+      "staticBufferSize": 16384,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 37
+      }
+    },
+    "events": [
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "owner",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "metadata",
+            "type": {
+              "displayName": [
+                "CardMetadata"
+              ],
+              "type": 12
+            }
+          }
+        ],
+        "docs": [
+          "Events"
+        ],
+        "label": "CardMinted",
+        "module_path": "alexandria_cards::alexandria_cards",
+        "signature_topic": "0x0f979c12da42ede25694b3128c0dc958a4004c4d0a28eeb77aaddf862ad09751"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "from",
+            "type": {
+              "displayName": [
+                "Option"
+              ],
+              "type": 53
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "to",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "docs": [],
+        "label": "CardTransfer",
+        "module_path": "alexandria_cards::alexandria_cards",
+        "signature_topic": "0xb079b37754dde0620b540a29abf3d2651a93d09ef6bcf24d146ae6501ebde5cd"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "seller",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "price",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 27
+            }
+          }
+        ],
+        "docs": [],
+        "label": "CardListedForSale",
+        "module_path": "alexandria_cards::alexandria_cards",
+        "signature_topic": "0x8c6e5eee23752f31e51ff5948029fffd636a6af76b0d860626877319993a8fbf"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "from",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "to",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "price",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 27
+            }
+          }
+        ],
+        "docs": [],
+        "label": "CardSold",
+        "module_path": "alexandria_cards::alexandria_cards",
+        "signature_topic": "0xacdd62eed9259a6eae7ab91c30a63ad36316bc7783f830a212bb03303e269cba"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "battle_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "winner",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "docs": [],
+            "indexed": true,
+            "label": "loser",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "docs": [],
+        "label": "BattleCompleted",
+        "module_path": "alexandria_cards::alexandria_cards",
+        "signature_topic": "0xcf310e88dfc508576e0a0c047819c8af0e031f2f93b929065ea0e6a29fa02a33"
+      }
+    ],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 45
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "label": "to",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "params",
+            "type": {
+              "displayName": [
+                "CardCreateParams"
+              ],
+              "type": 46
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Mint a new card (only owner)"
+        ],
+        "label": "mint_card",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xa4b9aeb7"
+      },
+      {
+        "args": [
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get card metadata"
+        ],
+        "label": "get_card_metadata",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 50
+        },
+        "selector": "0x7e01ebec"
+      },
+      {
+        "args": [
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get card owner"
+        ],
+        "label": "owner_of",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 52
+        },
+        "selector": "0x99720c1e"
+      },
+      {
+        "args": [
+          {
+            "label": "owner",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get balance of account"
+        ],
+        "label": "balance_of",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 54
+        },
+        "selector": "0x0f755a56"
+      },
+      {
+        "args": [
+          {
+            "label": "to",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Transfer card"
+        ],
+        "label": "transfer",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 55
+        },
+        "selector": "0x84a15da1"
+      },
+      {
+        "args": [
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "price",
+            "type": {
+              "displayName": [
+                "Balance"
+              ],
+              "type": 27
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " List card for sale"
+        ],
+        "label": "list_for_sale",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 55
+        },
+        "selector": "0xfb33ff5f"
+      },
+      {
+        "args": [
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Buy card from marketplace"
+        ],
+        "label": "buy_card",
+        "mutates": true,
+        "payable": true,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 55
+        },
+        "selector": "0xf37c759d"
+      },
+      {
+        "args": [
+          {
+            "label": "opponent",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          },
+          {
+            "label": "my_cards",
+            "type": {
+              "displayName": [
+                "Vec"
+              ],
+              "type": 32
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Start a battle between two players"
+        ],
+        "label": "initiate_battle",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 47
+        },
+        "selector": "0xf2756bde"
+      },
+      {
+        "args": [
+          {
+            "label": "battle_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "winner",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Complete a battle and record results"
+        ],
+        "label": "complete_battle",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 55
+        },
+        "selector": "0xfdba2b7d"
+      },
+      {
+        "args": [
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Evolve a card (requires payment)"
+        ],
+        "label": "evolve_card",
+        "mutates": true,
+        "payable": true,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 55
+        },
+        "selector": "0x75250ece"
+      },
+      {
+        "args": [
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "TokenId"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get marketplace listing"
+        ],
+        "label": "get_listing",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 57
+        },
+        "selector": "0xfd34226e"
+      },
+      {
+        "args": [
+          {
+            "label": "battle_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get battle result"
+        ],
+        "label": "get_battle_result",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 59
+        },
+        "selector": "0x44996376"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "owner"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 3
+                }
+              },
+              "name": "next_token_id"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0x1e0ef62c",
+                      "ty": 0
+                    }
+                  },
+                  "root_key": "0x1e0ef62c",
+                  "ty": 4
+                }
+              },
+              "name": "token_owners"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x79835602",
+                              "ty": 9
+                            }
+                          },
+                          "name": "name"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x79835602",
+                              "ty": 9
+                            }
+                          },
+                          "name": "description"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x79835602",
+                              "ty": 9
+                            }
+                          },
+                          "name": "image_uri"
+                        },
+                        {
+                          "layout": {
+                            "enum": {
+                              "dispatchKey": "0x79835602",
+                              "name": "CardRarity",
+                              "variants": {
+                                "0": {
+                                  "fields": [],
+                                  "name": "Common"
+                                },
+                                "1": {
+                                  "fields": [],
+                                  "name": "Rare"
+                                },
+                                "2": {
+                                  "fields": [],
+                                  "name": "Epic"
+                                },
+                                "3": {
+                                  "fields": [],
+                                  "name": "Legendary"
+                                }
+                              }
+                            }
+                          },
+                          "name": "rarity"
+                        },
+                        {
+                          "layout": {
+                            "enum": {
+                              "dispatchKey": "0x79835602",
+                              "name": "CardClass",
+                              "variants": {
+                                "0": {
+                                  "fields": [],
+                                  "name": "Forest"
+                                },
+                                "1": {
+                                  "fields": [],
+                                  "name": "Sword"
+                                },
+                                "2": {
+                                  "fields": [],
+                                  "name": "Rune"
+                                },
+                                "3": {
+                                  "fields": [],
+                                  "name": "Dragon"
+                                },
+                                "4": {
+                                  "fields": [],
+                                  "name": "Abyss"
+                                },
+                                "5": {
+                                  "fields": [],
+                                  "name": "Haven"
+                                },
+                                "6": {
+                                  "fields": [],
+                                  "name": "Neutral"
+                                }
+                              }
+                            }
+                          },
+                          "name": "class"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x79835602",
+                              "ty": 3
+                            }
+                          },
+                          "name": "attack"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x79835602",
+                              "ty": 3
+                            }
+                          },
+                          "name": "defense"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x79835602",
+                              "ty": 3
+                            }
+                          },
+                          "name": "cost"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x79835602",
+                              "ty": 10
+                            }
+                          },
+                          "name": "is_evolved"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x79835602",
+                              "ty": 0
+                            }
+                          },
+                          "name": "creator"
+                        }
+                      ],
+                      "name": "CardMetadata"
+                    }
+                  },
+                  "root_key": "0x79835602",
+                  "ty": 11
+                }
+              },
+              "name": "token_metadata"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0x3aaeebc7",
+                      "ty": 3
+                    }
+                  },
+                  "root_key": "0x3aaeebc7",
+                  "ty": 17
+                }
+              },
+              "name": "balances"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0x9d67a725",
+                      "ty": 0
+                    }
+                  },
+                  "root_key": "0x9d67a725",
+                  "ty": 20
+                }
+              },
+              "name": "token_approvals"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0x4b71f26d",
+                      "ty": 10
+                    }
+                  },
+                  "root_key": "0x4b71f26d",
+                  "ty": 23
+                }
+              },
+              "name": "operator_approvals"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x2855a897",
+                              "ty": 3
+                            }
+                          },
+                          "name": "card_id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x2855a897",
+                              "ty": 0
+                            }
+                          },
+                          "name": "seller"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x2855a897",
+                              "ty": 27
+                            }
+                          },
+                          "name": "price"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x2855a897",
+                              "ty": 10
+                            }
+                          },
+                          "name": "is_active"
+                        }
+                      ],
+                      "name": "CardListing"
+                    }
+                  },
+                  "root_key": "0x2855a897",
+                  "ty": 28
+                }
+              },
+              "name": "marketplace_listings"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x9c5e3d83",
+                              "ty": 0
+                            }
+                          },
+                          "name": "player1"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x9c5e3d83",
+                              "ty": 0
+                            }
+                          },
+                          "name": "player2"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x9c5e3d83",
+                              "ty": 32
+                            }
+                          },
+                          "name": "player1_cards"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x9c5e3d83",
+                              "ty": 32
+                            }
+                          },
+                          "name": "player2_cards"
+                        }
+                      ],
+                      "name": "BattleInfo"
+                    }
+                  },
+                  "root_key": "0x9c5e3d83",
+                  "ty": 33
+                }
+              },
+              "name": "active_battles"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x46922b65",
+                              "ty": 0
+                            }
+                          },
+                          "name": "winner"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x46922b65",
+                              "ty": 0
+                            }
+                          },
+                          "name": "loser"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x46922b65",
+                              "ty": 32
+                            }
+                          },
+                          "name": "cards_used"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x46922b65",
+                              "ty": 37
+                            }
+                          },
+                          "name": "timestamp"
+                        }
+                      ],
+                      "name": "BattleResult"
+                    }
+                  },
+                  "root_key": "0x46922b65",
+                  "ty": 38
+                }
+              },
+              "name": "battle_results"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 3
+                }
+              },
+              "name": "next_battle_id"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 27
+                }
+              },
+              "name": "pack_price"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 27
+                }
+              },
+              "name": "evolution_fee"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 42
+                }
+              },
+              "name": "marketplace_fee"
+            }
+          ],
+          "name": "AlexandriaCards"
+        }
+      },
+      "root_key": "0x00000000",
+      "ty": 43
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 3
+          },
+          {
+            "name": "V",
+            "type": 0
+          },
+          {
+            "name": "KeyType",
+            "type": 5
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 6
+          },
+          {
+            "name": "R",
+            "type": 7
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "AutoKey"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 8
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "primitive": "bool"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 3
+          },
+          {
+            "name": "V",
+            "type": 12
+          },
+          {
+            "name": "KeyType",
+            "type": 15
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "name",
+                "type": 9,
+                "typeName": "String"
+              },
+              {
+                "name": "description",
+                "type": 9,
+                "typeName": "String"
+              },
+              {
+                "name": "image_uri",
+                "type": 9,
+                "typeName": "String"
+              },
+              {
+                "name": "rarity",
+                "type": 13,
+                "typeName": "CardRarity"
+              },
+              {
+                "name": "class",
+                "type": 14,
+                "typeName": "CardClass"
+              },
+              {
+                "name": "attack",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "defense",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "cost",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "is_evolved",
+                "type": 10,
+                "typeName": "bool"
+              },
+              {
+                "name": "creator",
+                "type": 0,
+                "typeName": "AccountId"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "CardMetadata"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Common"
+              },
+              {
+                "index": 1,
+                "name": "Rare"
+              },
+              {
+                "index": 2,
+                "name": "Epic"
+              },
+              {
+                "index": 3,
+                "name": "Legendary"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "CardRarity"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Forest"
+              },
+              {
+                "index": 1,
+                "name": "Sword"
+              },
+              {
+                "index": 2,
+                "name": "Rune"
+              },
+              {
+                "index": 3,
+                "name": "Dragon"
+              },
+              {
+                "index": 4,
+                "name": "Abyss"
+              },
+              {
+                "index": 5,
+                "name": "Haven"
+              },
+              {
+                "index": 6,
+                "name": "Neutral"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "CardClass"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 6
+          },
+          {
+            "name": "R",
+            "type": 16
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 8
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 0
+          },
+          {
+            "name": "V",
+            "type": 3
+          },
+          {
+            "name": "KeyType",
+            "type": 18
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 6
+          },
+          {
+            "name": "R",
+            "type": 19
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 8
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 3
+          },
+          {
+            "name": "V",
+            "type": 0
+          },
+          {
+            "name": "KeyType",
+            "type": 21
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 6
+          },
+          {
+            "name": "R",
+            "type": 22
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 8
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 23,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 24
+          },
+          {
+            "name": "V",
+            "type": 10
+          },
+          {
+            "name": "KeyType",
+            "type": 25
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "type": {
+        "def": {
+          "tuple": [
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "id": 25,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 6
+          },
+          {
+            "name": "R",
+            "type": 26
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 8
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 28,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 3
+          },
+          {
+            "name": "V",
+            "type": 29
+          },
+          {
+            "name": "KeyType",
+            "type": 30
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "card_id",
+                "type": 3,
+                "typeName": "TokenId"
+              },
+              {
+                "name": "seller",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "price",
+                "type": 27,
+                "typeName": "Balance"
+              },
+              {
+                "name": "is_active",
+                "type": 10,
+                "typeName": "bool"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "CardListing"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 6
+          },
+          {
+            "name": "R",
+            "type": 31
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 8
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 3
+          }
+        }
+      }
+    },
+    {
+      "id": 33,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 3
+          },
+          {
+            "name": "V",
+            "type": 34
+          },
+          {
+            "name": "KeyType",
+            "type": 35
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "player1",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "player2",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "player1_cards",
+                "type": 32,
+                "typeName": "Vec<TokenId>"
+              },
+              {
+                "name": "player2_cards",
+                "type": 32,
+                "typeName": "Vec<TokenId>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "BattleInfo"
+        ]
+      }
+    },
+    {
+      "id": 35,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 6
+          },
+          {
+            "name": "R",
+            "type": 36
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 36,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 8
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 38,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "K",
+            "type": 3
+          },
+          {
+            "name": "V",
+            "type": 39
+          },
+          {
+            "name": "KeyType",
+            "type": 40
+          }
+        ],
+        "path": [
+          "ink_storage",
+          "lazy",
+          "mapping",
+          "Mapping"
+        ]
+      }
+    },
+    {
+      "id": 39,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "winner",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "loser",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "cards_used",
+                "type": 32,
+                "typeName": "Vec<TokenId>"
+              },
+              {
+                "name": "timestamp",
+                "type": 37,
+                "typeName": "u64"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "BattleResult"
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "L",
+            "type": 6
+          },
+          {
+            "name": "R",
+            "type": 41
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ResolverKey"
+        ]
+      }
+    },
+    {
+      "id": 41,
+      "type": {
+        "def": {
+          "composite": {}
+        },
+        "params": [
+          {
+            "name": "ParentKey",
+            "type": 8
+          }
+        ],
+        "path": [
+          "ink_storage_traits",
+          "impls",
+          "ManualKey"
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "type": {
+        "def": {
+          "primitive": "u16"
+        }
+      }
+    },
+    {
+      "id": 43,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "owner",
+                "type": 0,
+                "typeName": "<AccountId as::ink::storage::traits::AutoStorableHint<::ink::\nstorage::traits::ManualKey<568692833u32, ()>,>>::Type"
+              },
+              {
+                "name": "next_token_id",
+                "type": 3,
+                "typeName": "<TokenId as::ink::storage::traits::AutoStorableHint<::ink::\nstorage::traits::ManualKey<303920651u32, ()>,>>::Type"
+              },
+              {
+                "name": "token_owners",
+                "type": 4,
+                "typeName": "<Mapping<TokenId, AccountId> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<754322974u32, ()\n>,>>::Type"
+              },
+              {
+                "name": "token_metadata",
+                "type": 11,
+                "typeName": "<Mapping<TokenId, CardMetadata> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<39224185u32, ()\n>,>>::Type"
+              },
+              {
+                "name": "balances",
+                "type": 17,
+                "typeName": "<Mapping<AccountId, u32> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<3354111546u32,\n()>,>>::Type"
+              },
+              {
+                "name": "token_approvals",
+                "type": 20,
+                "typeName": "<Mapping<TokenId, AccountId> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<631728029u32, ()\n>,>>::Type"
+              },
+              {
+                "name": "operator_approvals",
+                "type": 23,
+                "typeName": "<Mapping<(AccountId, AccountId), bool> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<1844605259u32,\n()>,>>::Type"
+              },
+              {
+                "name": "marketplace_listings",
+                "type": 28,
+                "typeName": "<Mapping<TokenId, CardListing> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<2544391464u32,\n()>,>>::Type"
+              },
+              {
+                "name": "active_battles",
+                "type": 33,
+                "typeName": "<Mapping<u32, BattleInfo> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<2201837212u32,\n()>,>>::Type"
+              },
+              {
+                "name": "battle_results",
+                "type": 38,
+                "typeName": "<Mapping<u32, BattleResult> as::ink::storage::traits::\nAutoStorableHint<::ink::storage::traits::ManualKey<1697354310u32,\n()>,>>::Type"
+              },
+              {
+                "name": "next_battle_id",
+                "type": 3,
+                "typeName": "<u32 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<2161876425u32, ()>,>>::Type"
+              },
+              {
+                "name": "pack_price",
+                "type": 27,
+                "typeName": "<Balance as::ink::storage::traits::AutoStorableHint<::ink::\nstorage::traits::ManualKey<4220714119u32, ()>,>>::Type"
+              },
+              {
+                "name": "evolution_fee",
+                "type": 27,
+                "typeName": "<Balance as::ink::storage::traits::AutoStorableHint<::ink::\nstorage::traits::ManualKey<840284617u32, ()>,>>::Type"
+              },
+              {
+                "name": "marketplace_fee",
+                "type": 42,
+                "typeName": "<u16 as::ink::storage::traits::AutoStorableHint<::ink::storage\n::traits::ManualKey<115550151u32, ()>,>>::Type"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "AlexandriaCards"
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 8
+          },
+          {
+            "name": "E",
+            "type": 45
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 45,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 46,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "name",
+                "type": 9,
+                "typeName": "String"
+              },
+              {
+                "name": "description",
+                "type": 9,
+                "typeName": "String"
+              },
+              {
+                "name": "image_uri",
+                "type": 9,
+                "typeName": "String"
+              },
+              {
+                "name": "rarity",
+                "type": 13,
+                "typeName": "CardRarity"
+              },
+              {
+                "name": "class",
+                "type": 14,
+                "typeName": "CardClass"
+              },
+              {
+                "name": "attack",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "defense",
+                "type": 3,
+                "typeName": "u32"
+              },
+              {
+                "name": "cost",
+                "type": 3,
+                "typeName": "u32"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "CardCreateParams"
+        ]
+      }
+    },
+    {
+      "id": 47,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 48
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 48
+          },
+          {
+            "name": "E",
+            "type": 45
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 48,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 49
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 49
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 49,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "TokenNotFound"
+              },
+              {
+                "index": 1,
+                "name": "NotOwner"
+              },
+              {
+                "index": 2,
+                "name": "NotApproved"
+              },
+              {
+                "index": 3,
+                "name": "InsufficientBalance"
+              },
+              {
+                "index": 4,
+                "name": "NotForSale"
+              },
+              {
+                "index": 5,
+                "name": "AlreadyListed"
+              },
+              {
+                "index": 6,
+                "name": "BattleNotFound"
+              },
+              {
+                "index": 7,
+                "name": "NotBattleParticipant"
+              },
+              {
+                "index": 8,
+                "name": "InvalidEvolution"
+              },
+              {
+                "index": 9,
+                "name": "OnlyOwner"
+              }
+            ]
+          }
+        },
+        "path": [
+          "alexandria_cards",
+          "alexandria_cards",
+          "ContractError"
+        ]
+      }
+    },
+    {
+      "id": 50,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 51
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 51
+          },
+          {
+            "name": "E",
+            "type": 45
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 51,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 12
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 12
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 52,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 53
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 53
+          },
+          {
+            "name": "E",
+            "type": 45
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 53,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 54,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 45
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 55,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 56
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 56
+          },
+          {
+            "name": "E",
+            "type": 45
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 56,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 49
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 8
+          },
+          {
+            "name": "E",
+            "type": 49
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 57,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 58
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 58
+          },
+          {
+            "name": "E",
+            "type": 45
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 58,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 29
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 29
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 59,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 60
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 45
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 60
+          },
+          {
+            "name": "E",
+            "type": 45
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 60,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 39
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 39
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 61,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 62,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "ink_env",
+          "types",
+          "NoChainExtension"
+        ]
+      }
+    }
+  ],
+  "version": 5
+}

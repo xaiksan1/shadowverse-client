@@ -1,0 +1,1 @@
+ink::storage::Mapping<u32, alexandria_cards::CardMetadata, ink::storage::traits::ResolverKey<ink::storage::traits::AutoKey, ink::storage::traits::ManualKey<39224185>>>

@@ -1,0 +1,1 @@
+/home/ichigo/workspace_code/anima-mundi/shadowverse-client/contracts/alexandria_cards/target/ink/release/metadata-gen: /home/ichigo/workspace_code/anima-mundi/shadowverse-client/contracts/alexandria_cards/lib.rs /tmp/cargo-contract_qFT5An/.ink/metadata_gen/main.rs

@@ -1,0 +1,10 @@
+/home/ichigo/workspace_code/anima-mundi/shadowverse-client/contracts/alexandria_cards/target/debug/deps/scale_encode-b7483ed94f0428c5.d: /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/lib.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/mod.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/composite.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/variant.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/mod.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/context.rs
+
+/home/ichigo/workspace_code/anima-mundi/shadowverse-client/contracts/alexandria_cards/target/debug/deps/libscale_encode-b7483ed94f0428c5.rmeta: /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/lib.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/mod.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/composite.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/variant.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/mod.rs /home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/context.rs
+
+/home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/lib.rs:
+/home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/mod.rs:
+/home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/composite.rs:
+/home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/impls/variant.rs:
+/home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/mod.rs:
+/home/ichigo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/scale-encode-0.6.0/src/error/context.rs:

@@ -1,0 +1,2 @@
+(ink::ink_primitives::AccountId, std::string::String, std::string::String, std::string::String, alexandria_cards::CardRarity, alexandria_cards::CardClass, u32, u32, u32)
+(ink::ink_primitives::AccountId, std::string::String, std::string::String, std::string::String, alexandria_cards::CardRarity, alexandria_cards::CardClass, u32, u32, u32): ink::parity_scale_codec::Decode
